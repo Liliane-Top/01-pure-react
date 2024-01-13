@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- first library contains the components and state -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- second library contains the dom the view the UI the rendering of the first in the browser-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script>
+        function App() {
+            // from first library to create the component
+            //first is the element, props , child element/node
+            //with JSX we just use html thisis old school
+                    // const time = new Date().toLocaleTimeString(); just renders the time but is static
+            //in userState set the default value, 
+            const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+            // to make it dynamic useEffect with a function with shows the clock every 1000 millissecond = 1 sec
+            React.useEffect(function () {
+                setInterval(function () {
+                    setTime(new Date().toLocaleTimeString());
+                }, 1000)
+            }, []);
+
+        return React.createElement("header", null, `Hello React! It's ${time}`);
+        }
+        // for the rendering we use the second library
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(React.createElement(App))
+    </script>
+</body>
+</html>
